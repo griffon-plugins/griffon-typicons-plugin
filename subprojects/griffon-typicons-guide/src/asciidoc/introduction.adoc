@@ -1,0 +1,16 @@
+
+[[_introduction]]
+= Introduction
+
+{link_typicons} gives you scalable vector icons.
+This plugin enables toolkit specific icon support.
+
+Currently supported TypIcons version is `{typicons-version}`.
+
+Typicons by Stephen Hutchings
+
+Font License: SIL OFL 1.1 (http://scripts.sil.org/OFL) +
+Applies to all font files
+
+Code License: CC BY-SA (http://creativecommons.org/licenses/by-sa/3.0/) +
+Applies to icons and artwork

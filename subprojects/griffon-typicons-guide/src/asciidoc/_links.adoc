@@ -1,0 +1,4 @@
+
+:link_typicons: link:https://github.com/stephenhutchings/typicons.font[TypIcons, window="_blank"]
+:api_link_typicons_icon_javafx: link:api/griffon/javafx/support/typicons/TypIcon.html[griffon.javafx.support.typicons.TypIcon, window="_blank"]
+:api_link_typicons_icon_swing: link:api/griffon/swing/support/typicons/TypIcon.html[griffon.swing.support.typicons.TypIcon, window="_blank"]
