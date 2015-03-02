@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Andres Almiray">
+<title>Griffon Typ Icon Font Plugin</title>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+<link href='./css/typicons.min.css' rel='stylesheet'>
+<style>
+    .typcn {
+        font-size: 48px;
+    }
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Griffon Typ Icon Font Plugin</h1>
+<div class="details">
+<span id="author" class="author">Andres Almiray</span><br>
+<span id="revnumber">version 1.0.0</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_usage">2. Usage</a>
+<ul class="sectlevel2">
+<li><a href="#_swing">2.1. Swing</a></li>
+<li><a href="#_javafx">2.2. JavaFX</a></li>
+<li><a href="#_action_resources">2.3. Action Resources</a></li>
+</ul>
+</li>
+<li><a href="#_configuration">3. Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_gradle">3.1. Gradle</a>
+<ul class="sectlevel3">
+<li><a href="#_automatic">3.1.1. Automatic</a></li>
+<li><a href="#_manual">3.1.2. Manual</a></li>
+</ul>
+</li>
+<li><a href="#_maven">3.2. Maven</a></li>
+</ul>
+</li>
+<li><a href="#_modules">4. Modules</a>
+<ul class="sectlevel2">
+<li><a href="#_javafx_2">4.1. JavaFX</a></li>
+<li><a href="#_swing_2">4.2. Swing</a></li>
+</ul>
+</li>
+<li><a href="#_links">5. Links</a></li>
+<li><a href="#icon_cheat_cheet">6. Icon Cheat Sheet</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/stephenhutchings/typicons.font" target="_blank">TypIcons</a> gives you scalable vector icons.
+This plugin enables toolkit specific icon support.</p>
+</div>
+<div class="paragraph">
+<p>Currently supported TypIcons version is <code>2.0.7</code>.</p>
+</div>
+<div class="paragraph">
+<p>Typicons by Stephen Hutchings</p>
+</div>
+<div class="paragraph">
+<p>Font License: SIL OFL 1.1 (<a href="http://scripts.sil.org/OFL" class="bare">http://scripts.sil.org/OFL</a>)<br>
+Applies to all font files</p>
+</div>
+<div class="paragraph">
+<p>Code License: CC BY-SA (<a href="http://creativecommons.org/licenses/by-sa/3.0/" class="bare">http://creativecommons.org/licenses/by-sa/3.0/</a>)<br>
+Applies to icons and artwork</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>2. Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_swing"><a class="anchor" href="#_swing"></a>2.1. Swing</h3>
+<div class="paragraph">
+<p>The <code>griffon-typicons-swing:1.0.0</code> JAR provides a new Icon class: <code><a href="api/griffon/swing/support/typicons/TypIcon.html" target="_blank">griffon.swing.support.typicons.TypIcon</a></code>.
+You may use this class with any Swing component that supports an Icon property.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_javafx"><a class="anchor" href="#_javafx"></a>2.2. JavaFX</h3>
+<div class="paragraph">
+<p>The <code>griffon-typicons-javafx:1.0.0</code> JAR provides a new Node class: <code><a href="api/griffon/javafx/support/typicons/TypIcon.html" target="_blank">griffon.javafx.support.typicons.TypIcon</a></code>.
+You may use this class with any JavaFX control that accepts a graphic property. You may also use the icon directly as
+it is a subclass of <code>javafx.scene.control.Label</code>. The icon class can be used inside an FXML file too.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+
+<span class="comment">&lt;?import javafx.scene.control.Button?&gt;</span>
+<span class="comment">&lt;?import javafx.scene.layout.GridPane?&gt;</span>
+<span class="comment">&lt;?import griffon.javafx.support.typicons.TypIcon?&gt;</span>
+
+<span class="tag">&lt;GridPane</span> <span class="attribute-name">prefHeight</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">60.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">prefWidth</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">200.0</span><span class="delimiter">&quot;</span></span>
+          <span class="attribute-name">xmlns:fx</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://javafx.com/fxml</span><span class="delimiter">&quot;</span></span>
+          <span class="attribute-name">fx:controller</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">org.example.AppController</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;children&gt;</span>
+        <span class="tag">&lt;Button</span> <span class="attribute-name">fx:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">preferencesActionTarget</span><span class="delimiter">&quot;</span></span>
+                <span class="attribute-name">GridPane.columnIndex</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">GridPane.rowIndex</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">0</span><span class="delimiter">&quot;</span></span>
+                <span class="attribute-name">mnemonicParsing</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span>
+                <span class="attribute-name">prefWidth</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">200.0</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;graphic&gt;</span>
+                <span class="tag">&lt;TypIcon</span> <span class="attribute-name">typIcon</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">AT</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">iconSize</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">64</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+            <span class="tag">&lt;/graphic&gt;</span>
+        <span class="tag">&lt;/Button&gt;</span>
+    <span class="tag">&lt;/children&gt;</span>
+<span class="tag">&lt;/GridPane&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The JavaFX icon requires the usage of the <code>TypIcon</code> enum value.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_action_resources"><a class="anchor" href="#_action_resources"></a>2.3. Action Resources</h3>
+<div class="paragraph">
+<p>Action icons can be set using resources files if the following format is used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>iconClassName|name:size:color</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>size</code> and <code>color</code> are optional.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example using the Swing icon</p>
+</div>
+<div class="listingblock">
+<div class="title">griffon-app/i18n/messages.properties</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">org.example.AppController.action.Preferences.small_icon=griffon.swing.support.typicons.TypIcon|at:<span class="integer">64</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The JavaFX version for the same icon value is</p>
+</div>
+<div class="listingblock">
+<div class="title">griffon-app/i18n/messages.properties</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">org.example.AppController.action.Preferences.icon=griffon.javafx.support.typicons.TypIcon|at:<span class="integer">64</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>3. Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin delivers artifacts for both Swing and JavaFX. It also contains Groovy enhancements
+that can be used in combination with the respective UI toolkit DSL (SwingBuilder and GroovyFX).</p>
+</div>
+<div class="sect2">
+<h3 id="_gradle"><a class="anchor" href="#_gradle"></a>3.1. Gradle</h3>
+<div class="paragraph">
+<p>You have two options for configuring this plugin: automatic and manual.</p>
+</div>
+<div class="sect3">
+<h4 id="_automatic"><a class="anchor" href="#_automatic"></a>3.1.1. Automatic</h4>
+<div class="paragraph">
+<p>As long as the project has the <code>org.codehaus.griffon.griffon</code> plugin applied to it you
+may include the following snippet in build.gradle</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="groovy">dependencies {
+    griffon 'org.codehaus.griffon.plugins:griffon-typicons-plugin:1.0.0'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>griffon</code> plugin will take care of the rest given its configuration.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_manual"><a class="anchor" href="#_manual"></a>3.1.2. Manual</h4>
+<div class="paragraph">
+<p>You will need to configure any of the following blocks depending on your setup</p>
+</div>
+<div class="listingblock">
+<div class="title">Java + Swing</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="groovy">dependencies {
+    compile 'org.codehaus.griffon.plugins:griffon-typicons-swing:1.0.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Java + JavaFX</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="groovy">dependencies {
+    compile 'org.codehaus.griffon.plugins:griffon-typicons-javafx:1.0.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Groovy + Swing</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="groovy">dependencies {
+    compile 'org.codehaus.griffon.plugins:griffon-typicons-swing-groovy:1.0.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Groovy + JavaFX</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="groovy">dependencies {
+    compile 'org.codehaus.griffon.plugins:griffon-typicons-javafx-groovy:1.0.0'
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maven"><a class="anchor" href="#_maven"></a>3.2. Maven</h3>
+<div class="paragraph">
+<p>First configure the <code>griffon-typicons-plugin</code> BOM in your POM file, by placing the following
+snippet before the <code>&lt;build&gt;</code> element</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml"><span class="tag">&lt;dependencyManagement&gt;</span>
+    <span class="tag">&lt;dependencies&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.codehaus.griffon.plugins<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>griffon-typicons-plugin<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>1.0.0<span class="tag">&lt;/version&gt;</span>
+            <span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
+            <span class="tag">&lt;scope&gt;</span>import<span class="tag">&lt;/scope&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+    <span class="tag">&lt;/dependencies&gt;</span>
+<span class="tag">&lt;/dependencyManagement&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next configure dependencies as required by your particular setup</p>
+</div>
+<div class="listingblock">
+<div class="title">Java + Swing</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.griffon.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>griffon-typicons-swing<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Java + JavaFX</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.griffon.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>griffon-typicons-javafx<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Groovy + Swing</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.griffon.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>griffon-typicons-swing-groovy<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Groovy + JavaFX</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.griffon.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>griffon-typicons-javafx-groovy<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modules"><a class="anchor" href="#_modules"></a>4. Modules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following sections display all bindings per module. Use this information to
+successfully override a binding on your own modules or to troubleshoot a module
+binding if the wrong type has been applied by the Griffon runtime.</p>
+</div>
+<div class="sect2">
+<h3 id="_javafx_2"><a class="anchor" href="#_javafx_2"></a>4.1. JavaFX</h3>
+<div class="paragraph">
+<p>Module name: typicons-javafx-groovy</p>
+</div>
+<div class="paragraph">
+<p>Depends on: javafx-groovy</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="java">bind(BuilderCustomizer.class)
+    .to(TypIconsJavaFXBuilderCustomizer.class)
+    .asSingleton();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following nodes will become available on a Groovy View</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Node</th>
+<th class="tableblock halign-left valign-top">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">typIcon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="api/griffon/javafx/support/typicons/TypIcon.html" target="_blank">griffon.javafx.support.typicons.TypIcon</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_swing_2"><a class="anchor" href="#_swing_2"></a>4.2. Swing</h3>
+<div class="paragraph">
+<p>Module name: typicons-swing-groovy</p>
+</div>
+<div class="paragraph">
+<p>Depends on: swing-groovy</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="java">bind(BuilderCustomizer.class)
+    .to(TypIconsSwingBuilderCustomizer.class)
+    .asSingleton();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following nodes will become available on a Groovy View</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Node</th>
+<th class="tableblock halign-left valign-top">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">typIcon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="api/griffon/swing/support/typicons/TypIcon.html" target="_blank">griffon.swing.support.typicons.TypIcon</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_links"><a class="anchor" href="#_links"></a>5. Links</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="api/index.html" target="_blank">Javadoc</a></p>
+</div>
+<div class="paragraph">
+<p><a href="api-src/index.html" target="_blank">API Sources</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="icon_cheat_cheet"><a class="anchor" href="#icon_cheat_cheet"></a>6. Icon Cheat Sheet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following tables show all available icons.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enum</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Icon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ADJUST_BRIGHTNESS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">adjust-brightness</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-adjust-brightness"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ADJUST_CONTRAST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">adjust-contrast</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-adjust-contrast"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ANCHOR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">anchor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-anchor"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ANCHOR_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">anchor-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-anchor-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARCHIVE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">archive</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-archive"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_BACK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-back</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-back"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_BACK_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-back-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-back-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-down</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-down"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_DOWN_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-down-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-down-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_DOWN_THICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-down-thick</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-down-thick"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_FORWARD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-forward</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-forward"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_FORWARD_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-forward-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-forward-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_LEFT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-left</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-left"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_LEFT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-left-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-left-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_LEFT_THICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-left-thick</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-left-thick"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_LOOP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-loop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-loop"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_LOOP_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-loop-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-loop-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_MAXIMISE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-maximise</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-maximise"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_MAXIMISE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-maximise-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-maximise-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_MINIMISE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-minimise</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-minimise"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_MINIMISE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-minimise-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-minimise-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_MOVE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-move</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-move"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_MOVE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-move-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-move-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_REPEAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-repeat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-repeat"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_REPEAT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-repeat-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-repeat-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_RIGHT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-right</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-right"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_RIGHT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-right-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-right-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_RIGHT_THICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-right-thick</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-right-thick"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_SHUFFLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-shuffle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-shuffle"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_SORTED_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-sorted-down</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-sorted-down"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_SORTED_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-sorted-up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-sorted-up"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_SYNC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-sync</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-sync"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_SYNC_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-sync-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-sync-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_UNSORTED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-unsorted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-unsorted"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-up"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_UP_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-up-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-up-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ARROW_UP_THICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arrow-up-thick</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-arrow-up-thick"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">at</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-at"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ATTACHMENT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attachment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-attachment"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ATTACHMENT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attachment-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-attachment-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BACKSPACE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">backspace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-backspace"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BACKSPACE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">backspace-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-backspace-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BATTERY_CHARGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">battery-charge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-battery-charge"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BATTERY_FULL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">battery-full</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-battery-full"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BATTERY_HIGH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">battery-high</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-battery-high"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BATTERY_LOW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">battery-low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-battery-low"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BATTERY_MID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">battery-mid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-battery-mid"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BEAKER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">beaker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-beaker"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BEER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">beer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-beer"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BELL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bell</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-bell"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-book"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOKMARK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bookmark</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-bookmark"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BRIEFCASE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">briefcase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-briefcase"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BRUSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">brush</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-brush"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BUSINESS_CARD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">business-card</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-business-card"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CALCULATOR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">calculator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-calculator"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CALENDAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">calendar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-calendar"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CALENDAR_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">calendar-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-calendar-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CAMERA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">camera</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-camera"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CAMERA_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">camera-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-camera-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CANCEL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cancel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-cancel"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CANCEL_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cancel-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-cancel-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_AREA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-area</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-area"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_AREA_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-area-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-area-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_BAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-bar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-bar"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_BAR_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-bar-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-bar-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_LINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-line</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-line"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_LINE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-line-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-line-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_PIE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-pie</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-pie"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHART_PIE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chart-pie-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chart-pie-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHEVRON_LEFT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chevron-left</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chevron-left"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHEVRON_LEFT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chevron-left-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chevron-left-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHEVRON_RIGHT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chevron-right</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chevron-right"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHEVRON_RIGHT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chevron-right-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-chevron-right-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLIPBOARD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">clipboard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-clipboard"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOUD_STORAGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloud-storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-cloud-storage"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOUD_STORAGE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloud-storage-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-cloud-storage-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CODE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-code"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CODE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">code-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-code-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">COFFEE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">coffee</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-coffee"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">COG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cog</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-cog"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">COG_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cog-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-cog-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">COMPASS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">compass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-compass"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONTACTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">contacts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-contacts"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREDIT_CARD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">credit-card</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-credit-card"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">css3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-css3"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATABASE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-database"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-delete"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DELETE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-delete-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEVICE_DESKTOP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">device-desktop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-device-desktop"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEVICE_LAPTOP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">device-laptop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-device-laptop"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEVICE_PHONE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">device-phone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-device-phone"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEVICE_TABLET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">device-tablet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-device-tablet"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DIRECTIONS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">directions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-directions"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DIVIDE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">divide</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-divide"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DIVIDE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">divide-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-divide-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOCUMENT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-document"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOCUMENT_ADD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document-add</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-document-add"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOCUMENT_DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document-delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-document-delete"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOCUMENT_TEXT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document-text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-document-text"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOWNLOAD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">download</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-download"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOWNLOAD_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">download-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-download-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DROPBOX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dropbox</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-dropbox"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EDIT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-edit"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EJECT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-eject"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EJECT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eject-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-eject-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUALS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">equals</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-equals"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUALS_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">equals-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-equals-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EXPORT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-export"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EXPORT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-export-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EYE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eye</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-eye"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EYE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eye-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-eye-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FEATHER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">feather</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-feather"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FILM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">film</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-film"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FILTER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">filter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-filter"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLAG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flag"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLAG_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flag-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flag-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLASH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flash</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flash"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLASH_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flash-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flash-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLOW_CHILDREN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flow-children</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flow-children"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLOW_MERGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flow-merge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flow-merge"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLOW_PARALLEL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flow-parallel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flow-parallel"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLOW_SWITCH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flow-switch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-flow-switch"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FOLDER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">folder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-folder"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FOLDER_ADD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">folder-add</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-folder-add"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FOLDER_DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">folder-delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-folder-delete"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FOLDER_OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">folder-open</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-folder-open"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GIFT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gift</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-gift"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GLOBE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">globe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-globe"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GLOBE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">globe-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-globe-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GROUP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-group"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GROUP_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">group-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-group-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEADPHONES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">headphones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-headphones"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEART</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">heart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-heart"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEART_FULL_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">heart-full-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-heart-full-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEART_HALF_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">heart-half-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-heart-half-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEART_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">heart-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-heart-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HOME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">home</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-home"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HOME_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">home-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-home-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">html5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-html5"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-image"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">image-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-image-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFINITY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">infinity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-infinity"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFINITY_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">infinity-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-infinity-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-info"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFO_LARGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info-large</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-info-large"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFO_LARGE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info-large-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-info-large-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INFO_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-info-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INPUT_CHECKED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input-checked</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-input-checked"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INPUT_CHECKED_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input-checked-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-input-checked-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">key</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-key"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEYBOARD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keyboard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-keyboard"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">key-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-key-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LEAF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">leaf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-leaf"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LIGHTBULB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lightbulb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-lightbulb"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LINK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">link</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-link"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LINK_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">link-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-link-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCATION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-location"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCATION_ARROW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">location-arrow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-location-arrow"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCATION_ARROW_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">location-arrow-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-location-arrow-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCATION_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">location-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-location-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCK_CLOSED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lock-closed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-lock-closed"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCK_CLOSED_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lock-closed-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-lock-closed-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCK_OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lock-open</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-lock-open"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCK_OPEN_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lock-open-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-lock-open-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAIL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mail</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-mail"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-map"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_EJECT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-eject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-eject"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_EJECT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-eject-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-eject-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_FAST_FORWARD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-fast-forward</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-fast-forward"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_FAST_FORWARD_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-fast-forward-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-fast-forward-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_PAUSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-pause</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-pause"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_PAUSE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-pause-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-pause-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_PLAY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-play</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-play"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_PLAY_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-play-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-play-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_PLAY_REVERSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-play-reverse</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-play-reverse"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_PLAY_REVERSE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-play-reverse-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-play-reverse-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_RECORD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-record</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-record"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_RECORD_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-record-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-record-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_REWIND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-rewind</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-rewind"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_REWIND_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-rewind-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-rewind-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_STOP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-stop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-stop"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MEDIA_STOP_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media-stop-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-media-stop-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MESSAGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-message"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MESSAGES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-messages"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MESSAGE_TYPING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">message-typing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-message-typing"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MICROPHONE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">microphone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-microphone"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MICROPHONE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">microphone-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-microphone-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MINUS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-minus"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MINUS_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minus-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-minus-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MORTAR_BOARD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mortar-board</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-mortar-board"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NEWS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">news</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-news"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NOTES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">notes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-notes"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NOTES_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">notes-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-notes-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-pen"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PENCIL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pencil</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-pencil"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PHONE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">phone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-phone"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PHONE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">phone-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-phone-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-pi"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PIN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-pin"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PIN_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pin-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-pin-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PIPETTE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pipette</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-pipette"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PI_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pi-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-pi-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PLANE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plane</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-plane"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PLANE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plane-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-plane-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PLUG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plug</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-plug"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PLUS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-plus"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PLUS_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plus-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-plus-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POINT_OF_INTEREST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">point-of-interest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-point-of-interest"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POINT_OF_INTEREST_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">point-of-interest-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-point-of-interest-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POWER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">power</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-power"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POWER_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">power-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-power-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRINTER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">printer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-printer"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PUZZLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">puzzle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-puzzle"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PUZZLE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">puzzle-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-puzzle-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RADAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">radar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-radar"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RADAR_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">radar-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-radar-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REFRESH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">refresh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-refresh"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REFRESH_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">refresh-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-refresh-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RSS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-rss"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RSS_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rss-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-rss-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SCISSORS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">scissors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-scissors"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SCISSORS_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">scissors-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-scissors-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOPPING_BAG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shopping-bag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-shopping-bag"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHOPPING_CART</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shopping-cart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-shopping-cart"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_AT_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-at-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-at-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_DRIBBBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-dribbble</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-dribbble"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_DRIBBBLE_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-dribbble-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-dribbble-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_FACEBOOK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-facebook</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-facebook"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_FACEBOOK_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-facebook-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-facebook-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_FLICKR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-flickr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-flickr"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_FLICKR_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-flickr-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-flickr-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_GITHUB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-github</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-github"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_GITHUB_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-github-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-github-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_GOOGLE_PLUS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-google-plus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-google-plus"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_GOOGLE_PLUS_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-google-plus-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-google-plus-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_INSTAGRAM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-instagram</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-instagram"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_INSTAGRAM_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-instagram-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-instagram-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_LAST_FM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-last-fm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-last-fm"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_LAST_FM_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-last-fm-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-last-fm-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_LINKEDIN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-linkedin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-linkedin"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_LINKEDIN_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-linkedin-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-linkedin-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_PINTEREST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-pinterest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-pinterest"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_PINTEREST_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-pinterest-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-pinterest-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_SKYPE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-skype</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-skype"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_SKYPE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-skype-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-skype-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_TUMBLER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-tumbler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-tumbler"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_TUMBLER_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-tumbler-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-tumbler-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_TWITTER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-twitter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-twitter"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_TWITTER_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-twitter-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-twitter-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_VIMEO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-vimeo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-vimeo"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_VIMEO_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-vimeo-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-vimeo-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_YOUTUBE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-youtube</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-youtube"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOCIAL_YOUTUBE_CIRCULAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">social-youtube-circular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-social-youtube-circular"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SORT_ALPHABETICALLY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort-alphabetically</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-sort-alphabetically"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SORT_ALPHABETICALLY_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort-alphabetically-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-sort-alphabetically-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SORT_NUMERICALLY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort-numerically</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-sort-numerically"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SORT_NUMERICALLY_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort-numerically-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-sort-numerically-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPANNER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">spanner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-spanner"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPANNER_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">spanner-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-spanner-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SPIRAL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">spiral</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-spiral"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">star</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-star"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STARBURST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">starburst</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-starburst"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STARBURST_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">starburst-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-starburst-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STAR_FULL_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">star-full-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-star-full-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STAR_HALF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">star-half</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-star-half"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STAR_HALF_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">star-half-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-star-half-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STAR_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">star-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-star-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STOPWATCH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stopwatch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-stopwatch"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SUPPORT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-support"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TABS_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tabs-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-tabs-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TAG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-tag"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TAGS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-tags"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">THERMOMETER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">thermometer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-thermometer"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">THUMBS_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">thumbs-down</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-thumbs-down"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">THUMBS_OK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">thumbs-ok</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-thumbs-ok"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">THUMBS_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">thumbs-up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-thumbs-up"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_LARGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-large</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-large"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_LARGE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-large-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-large-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_LIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-list"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_LIST_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-list-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-list-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_MENU</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-menu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-menu"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_MENU_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-menu-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-menu-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_SMALL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-small</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-small"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TH_SMALL_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">th-small-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-th-small-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tick</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-tick"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TICKET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ticket</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-ticket"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TICK_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tick-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-tick-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-time"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">times</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-times"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMES_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">times-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-times-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRASH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trash</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-trash"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TREE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tree</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-tree"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UPLOAD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-upload"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UPLOAD_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upload-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-upload-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-user"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER_ADD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user-add</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-user-add"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER_ADD_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user-add-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-user-add-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER_DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user-delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-user-delete"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER_DELETE_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user-delete-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-user-delete-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-user-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VENDOR_ANDROID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vendor-android</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-vendor-android"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VENDOR_APPLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vendor-apple</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-vendor-apple"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VENDOR_MICROSOFT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vendor-microsoft</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-vendor-microsoft"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VIDEO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">video</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-video"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VIDEO_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">video-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-video-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VOLUME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volume</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-volume"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VOLUME_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volume-down</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-volume-down"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VOLUME_MUTE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volume-mute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-volume-mute"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VOLUME_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volume-up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-volume-up"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WARNING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">warning</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-warning"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WARNING_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">warning-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-warning-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WATCH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">watch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-watch"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WAVES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">waves</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-waves"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WAVES_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">waves-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-waves-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_CLOUDY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-cloudy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-cloudy"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_DOWNPOUR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-downpour</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-downpour"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_NIGHT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-night</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-night"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_PARTLY_SUNNY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-partly-sunny</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-partly-sunny"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_SHOWER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-shower</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-shower"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_SNOW</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-snow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-snow"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_STORMY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-stormy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-stormy"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_SUNNY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-sunny</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-sunny"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_WINDY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-windy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-windy"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WEATHER_WINDY_CLOUDY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">weather-windy-cloudy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-weather-windy-cloudy"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wine</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-wine"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WI_FI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wi-fi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-wi-fi"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WI_FI_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wi-fi-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-wi-fi-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WORLD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">world</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-world"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WORLD_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">world-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-world-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZOOM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zoom</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-zoom"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZOOM_IN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zoom-in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-zoom-in"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZOOM_IN_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zoom-in-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-zoom-in-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZOOM_OUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zoom-out</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-zoom-out"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZOOM_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zoom-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-zoom-outline"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZOOM_OUT_OUTLINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zoom-out-outline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="typcn typcn-zoom-out-outline"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0.0<br>
+Last updated 2015-02-26 13:08:29 CET
+</div>
+</div>
+</body>
+</html>
