@@ -14,3 +14,6 @@ Applies to all font files
 
 Code License: CC BY-SA (http://creativecommons.org/licenses/by-sa/3.0/) +
 Applies to icons and artwork
+
+Griffon version: {griffon-version}
+
